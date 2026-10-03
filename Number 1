@@ -1,1 +1,21 @@
-huy
+#include <iostream>
+using namespace std;
+int main() {
+    // Write C++ code here
+    double L, S, V, p, C;
+    cout << "Площадь крыла S: ";
+    cin >> S;
+
+    cout << "Скорость полета V: ";
+    cin >> V;
+
+    cout << "Плотность воздуха p: ";
+    cin >> p;
+
+    cout << "Коэффициент подъемной силы C: ";
+    cin >> C;
+
+    L = 0.5 * p * V * V * S * C;
+    cout << "Подъемная сила L: " << L;
+    return 0;
+}
