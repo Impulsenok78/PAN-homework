@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+
+    double h, ay, t;
+    h = 0;
+    ay = 0;
+    while (h <= 0){
+        cout << "введите высоту >0: ";
+        cin >> h;
+    }
+
+    while (ay <= 0){
+        cout << "введите ускорение >0: ";
+        cin >> ay;
+    }
+
+    t = sqrt(2*h/ay);
+    cout<<"время t: "<<t;
+    return 0;
+}
