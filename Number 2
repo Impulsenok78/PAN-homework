@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+double function(double p, double V, double S, double C){
+    double otvet = 0.5 * p * V * V * S * C;
+    return otvet;
+}
+
+
+
+int main() {
+
+    double L, S, V, p, C;
+    cout << "Площадь крыла S: ";
+    cin >> S;
+
+    cout << "Скорость полета V: ";
+    cin >> V;
+
+    cout << "Плотность воздуха p: ";
+    cin >> p;
+
+    cout << "Коэффициент сопротивления C: ";
+    cin >> C;
+
+    L = function(p, V, S, C);
+    cout << "аэродинамическое сопротивление L: " << L;
+    return 0;
+}
