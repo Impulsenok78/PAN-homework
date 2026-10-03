@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 int main() {
-    // Write C++ code here
     double L, S, V, p, C;
     cout << "Площадь крыла S: ";
     cin >> S;
