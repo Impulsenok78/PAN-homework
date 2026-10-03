@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    double m, L, D, T, g, a, ay;
+    g = 9.81;
+
+    cout << "Масса самолета M: ";
+    cin >> m;
+
+    cout << "Подъемная силу L: ";
+    cin >> L;
+
+    cout << "Сила сопротивления D: ";
+    cin >> D;
+
+    cout << "Тяга двигателя T: ";
+    cin >> T;
+
+    a = (T-D)/m;
+    ay = (L - m*g)/m;
+
+    cout << "Горизонтальное ускорение а: " << a << endl;
+    cout << "Вертикальное ускорение аy : " << ay;
+    return 0;
+}
