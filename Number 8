@@ -3,11 +3,12 @@
 using namespace std;
 
 struct Aircraft{
-    double m, S, T, Cl, Cd, ay, t;
+    double m, S, T, Cl, Cd, ay, ax;
 };
 
 int main() {
     double g, p, V, h, L, D;
+    g = 9.81;
     int n;
     
     cout << "Кол-во самолетов: ";
