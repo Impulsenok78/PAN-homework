@@ -1,0 +1,61 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+struct Aircraft{
+    double m, S, T, Cl, Cd, ay, t;
+};
+
+int main() {
+    double g, p, V, h, L, D;
+    int n;
+    
+    cout << "Кол-во самолетов: ";
+    cin >> n;
+
+    cout << "Плотность воздуха p: ";
+    cin >> p;
+    
+    cout << "Скорость полета V: ";
+    cin >> V;
+    
+    cout << "Высота h: ";
+    cin >> h;
+
+    Aircraft planes[n];
+    for (int i = 0; i<n; i++){
+        cout <<"Самолет номер "<<i+1<< endl;
+        cout <<"Масса:";
+        cin >> planes[i].m;
+        cout << "Площадь крыла S: ";
+        cin >> planes[i].S;
+        cout << "Тяга T: ";
+        cin >> planes[i].T;
+        cout << "Коэфф подьемной силы Cl: ";
+        cin >> planes[i].Cl;
+        cout << "Коэфф сопротивления Cd: ";
+        cin >> planes[i].Cd;
+    }
+
+    for (int i = 0; i<n; i++){
+        L = 0.5  * p * V * V * planes[i].S * planes[i].Cl;
+        D = 0.5  * p * V * V * planes[i].S * planes[i].Cd;
+        planes[i].ay = (L - planes[i].m * g) / planes[i].m;
+        planes[i].t = sqrt(2 * h / planes[i].ay);
+    }
+
+    for (int i =0; i<n; i++){
+        for (int j = 0; j < n-i-1; j++){
+            if (planes[j].t > planes[j+1].t){
+                Aircraft temp = planes[j];
+                planes[j] = planes[j+1];
+                planes[j+1] = temp;
+            }
+        }
+    };
+    cout << "Ответ"<< endl;
+    for (int i = 0; i < n; i++){
+        cout << i+1<< ") Вертикальное ускорение: "<<planes[i].ay<<"\tВремя: "<<planes[i].t<<endl;
+    }
+    return 0;
+}
