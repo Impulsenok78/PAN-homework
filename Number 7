@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    double m,L,T,D,g,ay;
+    g = 9.81;
+    cout << "Масса m: ";
+    cin >> m;
+
+    cout << "Подьемная сила L: ";
+    cin >> L;
+
+    cout << "Тяга двигателя Т: ";
+    cin >> T;
+
+    cout << "Сила сопротивления D: ";
+    cin >> D;
+
+    ay = (L-m*g)/m;
+    cout <<"Вертикальное ускорение ay: "<< ay << endl;
+
+    if (ay > 0.5){
+        cout << "Набор высоты";
+    }
+    else if  (0 <= ay && ay <= 0.5){
+        cout << "Горизонтальный полет";
+    }
+    else{
+        cout << "Снижение";
+    };
+    return 0;
+}
