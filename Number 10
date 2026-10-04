@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double Tmin, Tmax, dT, m, S, Cl, Cd, p, V, h, g, Tbest;
+    double tmin = 99999;
+    g = 9.81;
+
+    cout << "Масса m: ";
+    cin >> m;
+    cout << "Площадь крыла S: ";
+    cin >> S;
+    cout << "Коэф подьемной силы Cl: ";
+    cin >> Cl;
+    cout << "Коэф сопротивления Cd: ";
+    cin >> Cd;
+
+    cout << "Плотность воздуха p: ";
+    cin >> p;
+    cout << "Скорость полета V: ";
+    cin >> V;
+    cout << "Высота h: ";
+    cin >> h;
+
+    
+    cout << "Минимальную тяга Tmin: ";
+    cin >> Tmin;
+    cout << "Максимальную тягу Tmax: ";
+    cin >> Tmax;
+    cout << "Шаг изменения тяги dT: ";
+    cin >> dT;
+
+    int shag = (int)round((Tmax-Tmin)/dT);
+
+    for (int i = 0; i <= shag; i++){
+        double T = Tmin + i*dT;
+        double L = 0.5 * p * V * V * S * Cl;
+        double D = 0.5 * p * V * V * S * Cd;
+        double ay = (L - m * g) / m;
+        
+        double t = sqrt(2*h/ay);
+        if (t < tmin){
+            tmin = t;
+            Tbest = T;
+        }
+    }
+    cout << "Оптимальное значение тяги: " << Tbest;
+    cout << "\tСоответствующее время: " << tmin;
+    return 0;
+}
