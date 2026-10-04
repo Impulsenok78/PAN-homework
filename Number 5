@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+struct plane{
+    string name;
+    double m, S, T, Cl, Cd, L, D, ax, ay, t;
+};
+
+int main() {
+    double p, V, h, g;
+    g = 9.81;
+    cout << "Плотность воздуха p: ";
+    cin >> p;
+    cout << "Скорость полета V: ";
+    cin >> V;
+    cout << "Высота h: ";
+    cin >> h;
+
+    plane planes[3];
+
+    for (int i = 0; i < 3; i++){
+        cout << "Самолет: " << i+1<< endl;
+        cout << "Масса m: ";
+        cin >> planes[i].m;
+        cout << "Площадь крыла S: ";
+        cin >> planes[i].S;
+        cout << "Тяга T: ";
+        cin >> planes[i].T;
+        cout << "Коэффициент подъемной силы Cl: ";
+        cin >> planes[i].Cl;
+        cout << "Коэффициент сопротивления Cd: ";
+        cin >> planes[i].Cd;
+    };
+
+    for (int i = 0; i < 3; i++) {
+
+        planes[i].L = 0.5 * p * V * V * planes[i].S * planes[i].Cl;
+        planes[i].D = 0.5 * p * V * V * planes[i].S * planes[i].Cd;
+
+        planes[i].ax = (planes[i].T - planes[i].D) / planes[i].m;
+        
+        planes[i].ay = (planes[i].L - planes[i].m * g) / planes[i].m;
+
+
+        cout << " Самолет: " << planes[i].name << endl;
+        cout << "  Подъемная сила L: " << planes[i].L;
+        cout << "  Сопротивление D:  " << planes[i].D;
+        cout << "  Гориз. ускорение:   " << planes[i].ax;
+        cout << "  Верт. ускорение:    " << planes[i].ay;
+    };
+
+    
+    return 0;
+}
