@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <iomanip> 
+#include <numeric>
+
+using namespace std;
+
+int main() {
+    const double v0 = 50.0;
+    const double g = 9.8;
+    const double dt = 1.0;
+
+    if (v0 <= 0) {
+        cout << "Предупреждение" << endl;
+    }
+
+    vector<double> times;
+    vector<double> velocities;
+
+    int primerniy_size = (int)(v0 * 2 / g / dt);
+    times.reserve(primerniy_size);
+    velocities.reserve(primerniy_size);
+
+    for (double t = 0.0; ; t += dt) { 
+        
+        if (t > 1000.0) {
+            break;
+        }
+        
+        double v = v0 - g * t;
+
+        if (v < -v0) {
+            break;
+        }
+
+        times.push_back(t);
+        velocities.push_back(v);
+
+    } 
+
+    cout << setw(15) << "Время (с)" << setw(20) << "        Скорость (м/с)" << endl;
+
+
+    for (size_t i = 0; i < times.size(); i++) {
+        cout << "   " << setw(10) << fixed << setprecision(1) << times[i] 
+             << setw(18) << fixed << setprecision(2) << velocities[i] << endl;
+    }
+
+    if (velocities.empty()) {
+        cout << "Данных нет" << endl;
+        return 0;
+    }
+
+    double sum = accumulate(velocities.begin(), velocities.end(), 0.0);
+    
+
+    double avg = sum / velocities.size();
+
+
+    cout << "Средняя скорость за полет " << fixed << setprecision(2) << avg << " м/с" << endl;
+
+    return 0;
+}
