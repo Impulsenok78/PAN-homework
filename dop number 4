@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <numeric> 
+#include <cmath> 
+
+using namespace std;
+
+int main() {
+
+    vector<double> y_coords = {0.0, 10.0, 5.0, 15.0, 12.0, 20.0};
+
+    vector<double> diffs(y_coords.size());
+
+
+    adjacent_difference(y_coords.begin(), y_coords.end(), diffs.begin());
+
+
+    for (size_t i = 0; i < diffs.size(); i++) {
+        diffs[i] = abs(diffs[i]);
+    }
+
+
+    double total_path = accumulate(diffs.begin() + 1, diffs.end(), 0.0);
+
+
+
+    
+    cout << "Координаты Y: ";
+    for (size_t i = 0; i < y_coords.size(); i++) {
+        cout << y_coords[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Смещения (модуль): ";
+    for (size_t i = 0; i < diffs.size(); i++) {
+        cout << diffs[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Суммарный путь ракеты: " << total_path << " м" << endl;
+
+    return 0;
+}
