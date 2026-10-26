@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+#include <iomanip> 
+
+using namespace std;
+
+int main() {
+    const double v0 = 50.0;
+    const double g = 9.8;
+    const double dt = 1.0;
+
+    if (v0 <= 0) {
+        cout << "Предупреждение" << endl;
+    }
+
+    vector<double> times;
+    vector<double> heights;
+
+    int primerniy_size = (int)(v0 * 2 / g / dt);
+    times.reserve(primerniy_size);
+    heights.reserve(primerniy_size);
+
+    for (double t = 0.0; ; t += dt) { 
+        
+        if (t > 1000.0) {
+            break;
+        }
+        double h = v0 * t - 0.5 * g * t * t;
+
+
+        if (h < 0) {
+            break;
+        }
+
+
+        times.push_back(t);
+        heights.push_back(h);
+    }
+
+
+
+    
+
+    cout <<  "Время (с)        " << setw(15) << "Высота (м)        " << endl;
+
+    for (size_t i = 0; i < times.size(); i++) {
+        cout << "   "<< times[i] << "               " << heights[i] << endl;
+    }
+
+    return 0;
+}
