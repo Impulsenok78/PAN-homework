@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+
+    vector<double> x_coords = {15.5, 2.0, 10.1, 15.5, 3.3, 2.0, 7.7, 10.1, 2.0};
+
+
+
+    cout << "Размер до обработки: " << x_coords.size() << endl;
+
+
+    sort(x_coords.begin(), x_coords.end());
+
+
+    auto last = unique(x_coords.begin(), x_coords.end());
+
+
+    x_coords.erase(last, x_coords.end());
+
+
+    cout << "Уникальные координаты X: ";
+    for (size_t i = 0; i < x_coords.size(); i++) {
+        cout << x_coords[i] << " ";
+    }
+    cout << "\nРазмер после обработки: " << x_coords.size() << endl;
+
+    return 0;
+}
