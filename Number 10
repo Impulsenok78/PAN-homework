@@ -1,0 +1,92 @@
+#include <iostream>
+#include <vector>
+#include <iomanip> 
+#include <cmath>
+
+using namespace std;
+
+
+struct Point {
+    double x, y, z;
+};
+
+
+class Rocket {
+private:
+    Point position; 
+    double vx, vy, vz;
+    double mass; 
+
+public:
+
+    Rocket(double m, double init_vx, double init_vy, double init_vz) {
+        mass = m;
+        vx = init_vx;
+        vy = init_vy;
+        vz = init_vz;
+   
+        position = {0.0, 0.0, 0.0}; 
+    }
+
+
+    void updatePosition(double dt) {
+        position.x += vx * dt;
+        position.y += vy * dt;
+        position.z += vz * dt;
+    }
+
+ 
+    void changeVelocity(double dvx, double dvy, double dvz) {
+        vx += dvx;
+        vy += dvy;
+        vz += dvz;
+    }
+
+
+    Point getPosition() {
+        return position;
+    }
+};
+
+int main() {
+
+    vector<Rocket> squad;
+    squad.reserve(5); 
+
+
+    squad.emplace_back(1000, 10, 0, 50);
+    squad.emplace_back(900, 15, -5, 40);
+
+
+    vector<vector<Point>> trajectories(5);
+
+
+    double T = 10.0; 
+    double dt = 0.1; 
+
+    for (double t = 0.0; t <= T; t += dt) {
+ 
+        for (size_t i = 0; i < squad.size(); i++) {
+            squad[i].updatePosition(dt);
+            trajectories[i].push_back(squad[i].getPosition());
+        }
+    }
+
+
+  
+    cout << setw(10) << "Ракета" 
+         << setw(12) << "X (м)" 
+         << setw(12) << "Y (м)" 
+         << setw(12) << "Z (м)" << endl;
+
+
+    for (size_t i = 0; i < squad.size(); i++) {
+        Point p = squad[i].getPosition();
+        cout << setw(10) << i + 1 
+             << setw(12) << fixed << setprecision(1) << p.x
+             << setw(12) << fixed << setprecision(1) << p.y
+             << setw(12) << fixed << setprecision(1) << p.z << endl;
+    }
+
+    return 0;
+}
