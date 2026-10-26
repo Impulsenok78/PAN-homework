@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+
+    vector<double> sensor_data = {9.81, 0.0, 9.80, 0.0, 0.0, 9.82, 0.0, 5.4, 0.0};
+
+
+    int zero_count = count(sensor_data.begin(), sensor_data.end(), 0.0);
+
+    cout << "Всего измерений в векторе: " << sensor_data.size() << endl;
+    cout << "Количество нулевых показаний: " << zero_count << endl;
+
+    return 0;
+}
